@@ -1,0 +1,17 @@
+{
+  "name": "nuxt-csp3",
+  "version": "1.0.0",
+  "description": "My cat&#39;s pajamas Nuxt.js project",
+  "author": "Pascal Sthamer",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "2.12.2"
+  },
+  "devDependencies": {}
+}
