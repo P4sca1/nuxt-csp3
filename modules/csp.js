@@ -32,18 +32,18 @@ export default function cspModule() {
     },
   }
 
-  this.nuxt.hook('render:routeContext', (nuxtContext) => {
+  this.nuxt.hook('vue-renderer:ssr:context', (context) => {
     // Generate a 128 bit random nonce every request.
     const nonce = randomBytes(128).toString('base64')
     // Inject nonce into vuex state before state is serialized into window.__NUXT__.
-    nuxtContext.state.nonce = nonce
+    context.nuxt.state.nonce = nonce
   })
 
   this.nuxt.hook(
     'render:route',
-    (url, { cspScriptSrcHashes }, { nuxt: nuxtContext }) => {
+    (url, { cspScriptSrcHashes }, context) => {
       // Extract nonce generated in render:routeContext.
-      const nonce = nuxtContext.state.nonce
+      const nonce = context.nuxt.state.nonce
       // Add nonce to cspScriptSrcHashes. Nuxt will populate all entries in this array
       // to the csp header and meta tags as part of the script-src csp policy.
       cspScriptSrcHashes.push(`'nonce-${nonce}'`)
